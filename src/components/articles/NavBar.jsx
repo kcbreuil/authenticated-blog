@@ -4,8 +4,14 @@ import Navbar from "react-bootstrap/Navbar";
 const NavBar = () => {
   return (
     <div>
-      <Navbar expand="lg" variant="light" bg="light">
-        <Navbar.Brand href="#">Navbar</Navbar.Brand>
+      <Navbar>
+        <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            Signed in as: <a href="#login">Mark Otto</a>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );
