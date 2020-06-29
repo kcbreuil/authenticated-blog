@@ -13,13 +13,13 @@ const Login = () => {
       method: "POST",
       url: `/users/login`,
       data: {
-        username,
-        password,
+        username: username,
+        password: password,
       },
     })
       .then((user) => {
         setUser(user.data);
-        localStorage.setItem("token", user.data.tokens[0].token);
+        localStorage.setItem("token", user.data.token);
         setLoggedIn(true);
         setUsername("");
         setPassword("");

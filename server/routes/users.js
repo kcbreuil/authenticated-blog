@@ -17,8 +17,8 @@ router.post("/users", async (req, res) => {
 
 // get all the bloggers / users
 
-router.get("/users", (req, res) => {
-  User.find({})
+router.get("/users", async (req, res) => {
+  await User.find({})
     .then((users) => {
       res.send(users);
     })
@@ -32,7 +32,7 @@ router.get("/users", (req, res) => {
 router.get("/users/:id", auth, async (req, res) => {
   const _id = req.params.id;
   if (mongoose.Types.ObjectId.isValid(_id)) {
-    User.findById(_id)
+    await User.findById(_id)
       .then((user) => {
         if (!user) {
           return res.status(404).send();
@@ -82,7 +82,8 @@ router.post("/users/login", async (req, res) => {
       req.body.username,
       req.body.password
     );
-    res.send(user);
+    const token = await user.generateAuthToken();
+    res.send({ user, token });
   } catch (e) {
     res.status(400).send(e);
   }
@@ -98,6 +99,25 @@ router.post("/users/logout", auth, async (req, res) => {
     res.send({ message: "Logged out" });
   } catch (e) {
     req.status(500).send();
+  }
+});
+
+// Delete a User //
+router.delete("/users/me", auth, async (req, res) => {
+  try {
+    await req.user.remove();
+    res.send(req.user);
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+// Get current user //
+
+router.get("/users/me", auth, async (req, res) => {
+  try {
+    res.send(req.user);
+  } catch (e) {
+    res.status(500).send();
   }
 });
 module.exports = router;

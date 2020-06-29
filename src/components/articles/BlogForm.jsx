@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import NavBar from "./NavBar";
 
 const BlogForm = () => {
   const [title, setTitle] = useState("");
@@ -23,6 +24,7 @@ const BlogForm = () => {
   };
   return (
     <div>
+      <NavBar />
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>

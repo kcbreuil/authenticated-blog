@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 const Article = require("../models/article");
 
 //create an article(blog)
-router.post("/articles", auth, async (req, res) => {
+router.post("/articles/new", auth, async (req, res) => {
   const article = new Article({
     ...req.body,
     owner: req.user._id,

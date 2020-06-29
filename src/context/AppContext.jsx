@@ -13,9 +13,11 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       axios
-        .get("/users/me", { headers: { Authorization: `Bearer ${token}` } })
-        .then(({ user }) => {
-          setUser(user);
+        .get("/users/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(({ data }) => {
+          setUser(data);
           setLoggedIn(true);
         })
         .catch((e) => console.log(e.message.toString()));
@@ -27,7 +29,6 @@ const AppContextProvider = ({ children }) => {
       axios
         .get(`/articles`, { headers: { Authorization: `Bearer ${token}` } })
         .then(({ data }) => {
-          console.log(data);
           setBlogs(data);
         })
         .catch((e) => console.log(e.message.toString()));

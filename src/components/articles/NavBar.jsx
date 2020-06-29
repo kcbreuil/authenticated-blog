@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import Navbar from "react-bootstrap/Navbar";
+import Login from "./Login";
 
 const NavBar = () => {
   const { user } = useContext(AppContext);
@@ -12,7 +13,8 @@ const NavBar = () => {
         width: "100%",
       }}
     >
-      <Navbar.Brand href="#home">WynBlog</Navbar.Brand>
+      <Navbar.Brand href="/">WynBlog</Navbar.Brand>
+      <Login />
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
