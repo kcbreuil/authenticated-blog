@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import axios from "axios";
 
-const BlogForm = ({ history }) => {
-  const initialState = { title: "", text: "" };
-  const [values, setValues] = useState(initialState);
-  const handleSubmit = (e) => {
+const BlogForm = () => {
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch("/articles", {
+    const token = localStorage.getItem("token");
+    await axios({
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      url: `/articles`,
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        title: title,
+        text: text,
+      },
     })
-      .then((response) => {
-        if (response.ok) {
-          alert("Article successfully created");
-          return response.json().then((article) => {
-            history.push(`/articles/${article._id}`);
-          });
-        }
-      })
-      .catch((error) => alert(error));
+      .then(({ data }) => console.log(data))
+      .catch((e) => console.log(e.message.toString()));
   };
   return (
     <div>
@@ -31,7 +30,7 @@ const BlogForm = ({ history }) => {
             type="text"
             placeholder="Title of your blog..."
             required={true}
-            onChange={(e) => setValues({ ...values, title: e.target.value })}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
         <Form.Group>
@@ -41,7 +40,7 @@ const BlogForm = ({ history }) => {
             rows="5"
             placeholder="Text for your blog post..."
             required={true}
-            onChange={(e) => setValues({ ...values, text: e.target.value })}
+            onChange={(e) => setText(e.target.value)}
           />
         </Form.Group>
 

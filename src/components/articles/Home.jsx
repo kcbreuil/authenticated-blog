@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "./NavBar";
+import Login from "./Login";
 
 const Home = () => {
-  const [user, setUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div>
       <NavBar />
+      <Login />
     </div>
   );
 };
