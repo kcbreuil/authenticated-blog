@@ -18,7 +18,7 @@ const NavBar = () => {
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-          Signed in as: <a href="#login">{user.username}</a>
+          Signed in as: <a href="#login">{user && user.username}</a>
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>

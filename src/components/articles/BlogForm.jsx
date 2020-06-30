@@ -12,7 +12,7 @@ const BlogForm = () => {
     const token = localStorage.getItem("token");
     await axios({
       method: "POST",
-      url: `/articles`,
+      url: `/articles/new`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         title: title,

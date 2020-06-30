@@ -18,7 +18,7 @@ const Login = () => {
       },
     })
       .then((user) => {
-        setUser(user.data);
+        setUser(user.data.user);
         localStorage.setItem("token", user.data.token);
         setLoggedIn(true);
         setUsername("");

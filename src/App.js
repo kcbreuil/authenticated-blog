@@ -13,11 +13,9 @@ const App = () => {
       <AppContextProvider>
         <Container>
           <Switch>
-            <Route path="/articles/new" component={BlogForm} />
-            <Route path="/articles/:articleID/edit" component={BlogForm} />
-            <Route path="/articles/:articleID" component={Blog} />
-            <Route path="/articles" component={Blogs} />
-            <Route path="/" component={Home} />
+            <Route exact path="/articles/new" component={BlogForm} />
+            <Route exact path="/articles" component={Blogs} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </Container>
       </AppContextProvider>
