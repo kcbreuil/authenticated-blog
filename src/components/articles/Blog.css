@@ -1,0 +1,16 @@
+body {
+  background-image: url(https://res.cloudinary.com/farmersmarket/image/upload/v1593489244/7244827-isolated-ham-and-cheese-sandwiches-seamless-wallpaper-background_e7ygxw.jpg);
+}
+
+.login-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}

@@ -31,27 +31,32 @@ const Login = () => {
 
   return (
     <>
-      <form onSubmit={(e) => logIn(username, password, e)}>
-        <input
-          type="username"
-          name="username"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" className="btn-sm btn-primary actions">
-          Log In
-        </button>
-      </form>
+      <div className="login-div">
+        <form
+          className="login-form"
+          onSubmit={(e) => logIn(username, password, e)}
+        >
+          <input
+            type="username"
+            name="username"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn-sm btn-primary actions">
+            Log In
+          </button>
+        </form>
+      </div>
     </>
   );
 };

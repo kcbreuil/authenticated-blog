@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import { Form, Button } from "react-bootstrap";
-import axios from "axios";
 import NavBar from "./NavBar";
+import axios from "axios";
 
 const BlogForm = () => {
+  const { setBlog } = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
 
@@ -19,13 +21,16 @@ const BlogForm = () => {
         text: text,
       },
     })
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => {
+        setBlog(data);
+        setTitle("");
+        setText("");
+      })
       .catch((e) => console.log(e.message.toString()));
   };
 
   return (
     <div>
-      <NavBar />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>
@@ -47,7 +52,7 @@ const BlogForm = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" value="reset">
+        <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>

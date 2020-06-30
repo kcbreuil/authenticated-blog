@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [blogs, setBlogs] = useState([]);
+  const [blog, setBlog] = useState({});
 
   const token = localStorage.getItem("token");
 
