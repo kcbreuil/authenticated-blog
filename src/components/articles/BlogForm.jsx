@@ -22,10 +22,11 @@ const BlogForm = () => {
       .then(({ data }) => console.log(data))
       .catch((e) => console.log(e.message.toString()));
   };
+
   return (
     <div>
       <NavBar />
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -46,7 +47,7 @@ const BlogForm = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onSubmit={handleSubmit}>
+        <Button variant="primary" type="submit" value="reset">
           Submit
         </Button>
       </Form>

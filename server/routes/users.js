@@ -120,4 +120,6 @@ router.get("/users/me", auth, async (req, res) => {
     res.status(500).send();
   }
 });
+
+//logout a user
 module.exports = router;

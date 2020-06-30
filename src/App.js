@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
-import { Container } from "react-bootstrap";
 import Blog from "./components/articles/Blog";
 import Blogs from "./components/articles/Blogs";
 import BlogForm from "./components/articles/BlogForm";
@@ -11,13 +10,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <AppContextProvider>
-        <Container>
-          <Switch>
-            <Route exact path="/articles/new" component={BlogForm} />
-            <Route exact path="/articles" component={Blogs} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/add" component={BlogForm} />
+          <Route path="/articles/:articleId/edit" component={BlogForm} />
+          <Route path="/articles/:articleId" component={Blog} />
+          <Route exact path="/articles" component={Blogs} />
+          <Route exact path="/" component={Home} />
+        </Switch>
       </AppContextProvider>
     </BrowserRouter>
   );

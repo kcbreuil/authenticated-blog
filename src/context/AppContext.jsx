@@ -8,30 +8,32 @@ const AppContextProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [blogs, setBlogs] = useState([]);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     axios
-  //       .get("/users", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then(({ data }) => {
-  //         setUser(data);
-  //         setLoggedIn(true);
-  //       })
-  //       .catch((e) => console.log(e.message.toString()));
-  //   }
-  // }, [token]);
+  const token = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   if (token) {
-  //     axios
-  //       .get(`/articles`, { headers: { Authorization: `Bearer ${token}` } })
-  //       .then(({ data }) => {
-  //         setBlogs(data);
-  //       })
-  //       .catch((e) => console.log(e.message.toString()));
-  //   }
-  // }, [loggedIn, token]);
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("/users", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(({ data }) => {
+          setUser(data);
+          setLoggedIn(true);
+        })
+        .catch((e) => console.log(e.message.toString()));
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`/articles`, { headers: { Authorization: `Bearer ${token}` } })
+        .then(({ data }) => {
+          setBlogs(data);
+        })
+        .catch((e) => console.log(e.message.toString()));
+    }
+  }, [loggedIn, token]);
 
   return (
     <AppContext.Provider
