@@ -1,31 +1,31 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../context/AppContext";
-import axios from "axios";
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
 
 const Login = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const logIn = async (username, password, e) => {
     e.preventDefault();
     await axios({
-      method: "POST",
+      method: 'POST',
       url: `/users/login`,
       data: {
         username: username,
-        password: password,
-      },
+        password: password
+      }
     })
       .then((user) => {
         setUser(user.data.user);
-        localStorage.setItem("token", user.data.token);
+        localStorage.setItem('token', user.data.token);
         setLoggedIn(true);
-        setUsername("");
-        setPassword("");
+        setUsername('');
+        setPassword('');
       })
       .catch((e) => {
-        console.log(e.message.toString(), "Credentials Error");
+        console.log(e.message.toString(), 'Credentials Error');
       });
   };
 

@@ -1,13 +1,12 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../context/AppContext";
-import Card from "react-bootstrap/Card";
-import NavBar from "./NavBar";
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import Card from 'react-bootstrap/Card';
 
-import "./Blog.css";
+import './Blog.css';
 
 const Blogs = () => {
   const { blogs } = useContext(AppContext);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   return (
     <div>
@@ -16,7 +15,7 @@ const Blogs = () => {
           <Card.Body>{blog.title}</Card.Body>
           <Card.Body>{blog.text}</Card.Body>
           <input
-            type="text"
+            type="comment"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />

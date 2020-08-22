@@ -1,21 +1,22 @@
-import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [blogs, setBlogs] = useState([]);
-  const [blog, setBlog] = useState({});
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (token) {
       axios
-        .get("/users", {
-          headers: { Authorization: `Bearer ${token}` },
+        .get('/users', {
+          headers: { Authorization: `Bearer ${token}` }
         })
         .then(({ data }) => {
           setUser(data);
@@ -45,6 +46,10 @@ const AppContextProvider = ({ children }) => {
         setLoggedIn,
         blogs,
         setBlogs,
+        username,
+        setUsername,
+        password,
+        setPassword
       }}
     >
       {children}

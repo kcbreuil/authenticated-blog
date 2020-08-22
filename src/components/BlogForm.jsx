@@ -1,37 +1,37 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../context/AppContext";
-import { Form, Button } from "react-bootstrap";
-import NavBar from "./NavBar";
-import axios from "axios";
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import './Blog.css';
 
 const BlogForm = () => {
   const { setBlog } = useContext(AppContext);
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     await axios({
-      method: "POST",
+      method: 'POST',
       url: `/articles/new`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         title: title,
-        text: text,
-      },
+        text: text
+      }
     })
       .then(({ data }) => {
         setBlog(data);
-        setTitle("");
-        setText("");
+        setTitle('');
+        setText('');
       })
       .catch((e) => console.log(e.message.toString()));
   };
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="blog-form">
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>
           <Form.Control

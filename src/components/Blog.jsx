@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
-import { AppContext } from "../../context/AppContext";
-import NavBar from "./NavBar";
-import axios from "axios";
+import React, { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
 
 const Blog = ({ match }) => {
   const { blog, setBlog } = useContext(AppContext);
@@ -14,7 +13,6 @@ const Blog = ({ match }) => {
   });
   return (
     <div>
-      <NavBar />
       <div>
         <h1>{blog.title}</h1>
         <p>{blog.text}</p>

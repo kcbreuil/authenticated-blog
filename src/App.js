@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { AppContextProvider } from "./context/AppContext";
-import Blog from "./components/articles/Blog";
-import Blogs from "./components/articles/Blogs";
-import BlogForm from "./components/articles/BlogForm";
-import Home from "./components/articles/Home";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { AppContextProvider } from './context/AppContext';
+import Blog from './components/Blog';
+import Blogs from './components/Blogs';
+import BlogForm from './components/BlogForm';
+import Home from './components/Home';
 
 const App = () => {
   return (

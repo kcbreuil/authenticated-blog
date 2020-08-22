@@ -1,10 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = new express.Router();
-const mongoose = require("mongoose");
-const auth = require("../middleware/auth.js");
-const User = require("../models/user");
+const mongoose = require('mongoose');
+const auth = require('../middleware/auth.js');
+const User = require('../models/user');
 
-router.post("/users", async (req, res) => {
+//Create a User
+router.post('/users', async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -17,7 +18,7 @@ router.post("/users", async (req, res) => {
 
 // get all the bloggers / users
 
-router.get("/users", async (req, res) => {
+router.get('/users', async (req, res) => {
   await User.find({})
     .then((users) => {
       res.send(users);
@@ -29,7 +30,7 @@ router.get("/users", async (req, res) => {
 
 //get a specific user/blogger
 
-router.get("/users/:id", auth, async (req, res) => {
+router.get('/users/:id', auth, async (req, res) => {
   const _id = req.params.id;
   if (mongoose.Types.ObjectId.isValid(_id)) {
     await User.findById(_id)
@@ -44,26 +45,26 @@ router.get("/users/:id", auth, async (req, res) => {
         res.status(500).send();
       });
   } else {
-    res.status(400).send("Not a valid id");
+    res.status(400).send('Not a valid id');
   }
 });
 
 //update a bloggers info
 
-router.patch("/users/:id", async (req, res) => {
+router.patch('/users/:id', async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ["username", "password"];
+  const allowedUpdates = ['username', 'password'];
 
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
   if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates!" });
+    return res.status(400).send({ error: 'Invalid updates!' });
   }
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true,
+      runValidators: true
     });
     if (!user) {
       return res.status(404).send();
@@ -76,7 +77,7 @@ router.patch("/users/:id", async (req, res) => {
 
 //login a user
 
-router.post("/users/login", async (req, res) => {
+router.post('/users/login', async (req, res) => {
   try {
     const user = await User.findByCredentials(
       req.body.username,
@@ -90,20 +91,20 @@ router.post("/users/login", async (req, res) => {
 });
 
 //Logout a user
-router.post("/users/logout", auth, async (req, res) => {
+router.post('/users/logout', auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token;
     });
     await req.user.save();
-    res.send({ message: "Logged out" });
+    res.send({ message: 'Logged out' });
   } catch (e) {
     req.status(500).send();
   }
 });
 
 // Delete a User //
-router.delete("/users/me", auth, async (req, res) => {
+router.delete('/users/me', auth, async (req, res) => {
   try {
     await req.user.remove();
     res.send(req.user);
@@ -113,7 +114,7 @@ router.delete("/users/me", auth, async (req, res) => {
 });
 // Get current user //
 
-router.get("/users/me", auth, async (req, res) => {
+router.get('/users/me', auth, async (req, res) => {
   try {
     res.send(req.user);
   } catch (e) {
