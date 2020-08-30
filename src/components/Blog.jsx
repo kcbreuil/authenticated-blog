@@ -7,7 +7,7 @@ const Blog = ({ match }) => {
 
   useEffect(() => {
     axios
-      .get(`/articles/${match.params.articleId}`)
+      .get(`/blogs/${match.params.articleId}`)
       .then((blog) => setBlog(blog))
       .catch((error) => alert(error));
   });

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import NavBar from './NavBar';
-import Signup from './Signup';
+import Login from './Login';
 
 const Home = () => {
   return (
     <div className="home">
       <div>
         <NavBar />
-        <Signup />
+        <Login />
       </div>
     </div>
   );

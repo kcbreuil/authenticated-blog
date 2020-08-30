@@ -11,7 +11,7 @@ const Blogs = () => {
   return (
     <div>
       {blogs.map((blog) => (
-        <Card className="article-container">
+        <Card className="article-container" key={blog.id}>
           <Card.Body>{blog.title}</Card.Body>
           <Card.Body>{blog.text}</Card.Body>
           <input

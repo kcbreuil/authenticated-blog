@@ -6,7 +6,7 @@ const express = require('express'),
 
 // Imports routes
 const userRouter = require('./routes/users');
-const articleRouter = require('./routes/articles');
+const blogRouter = require('./routes/blog');
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(userRouter);
-app.use(articleRouter);
+app.use(blogRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

@@ -1,11 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const history = useHistory();
 
   const logIn = async (username, password, e) => {
     e.preventDefault();
@@ -55,6 +58,12 @@ const Login = () => {
           <button type="submit" className="btn-sm btn-primary actions">
             Log In
           </button>
+          <div>
+            <p>
+              Don't have an account? &nbsp;
+              <Link onClick={() => history.push(`/signup`)}>Sign Up</Link>
+            </p>
+          </div>
         </form>
       </div>
     </>

@@ -1,5 +1,9 @@
 body {
-  background-image: url(https://res.cloudinary.com/farmersmarket/image/upload/v1598068608/589319a07779c5467fca996e9489d33f_xigot9.jpg);
+  background-image: url(https://labourenergy.org/wp-content/uploads/2020/02/cute-backgrounds-for-youtube-1024x576.jpg);
+  object-fit: cover;
+}
+
+body.background-image {
   object-fit: contain;
 }
 

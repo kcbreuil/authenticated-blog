@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [blogs, setBlogs] = useState([]);
 
@@ -29,7 +30,7 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       axios
-        .get(`/articles`, { headers: { Authorization: `Bearer ${token}` } })
+        .get(`/blogs`, { headers: { Authorization: `Bearer ${token}` } })
         .then(({ data }) => {
           setBlogs(data);
         })
@@ -44,6 +45,8 @@ const AppContextProvider = ({ children }) => {
         setUser,
         loggedIn,
         setLoggedIn,
+        email,
+        setEmail,
         blogs,
         setBlogs,
         username,

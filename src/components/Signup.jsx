@@ -10,23 +10,30 @@ const Signup = () => {
     password,
     setPassword,
     username,
-    setUsername
+    setUsername,
+    email,
+    setEmail
   } = useContext(AppContext);
 
   const history = useHistory();
 
-  const signup = async (username, password, e) => {
+  const signup = async (username, email, password, e) => {
     e.preventDefault();
     await axios({
       method: 'POST',
       url: `/users`,
       data: {
         username,
+        email,
         password
       }
     })
       .then(({ data }) => {
+        console.log(data);
         setUser(data.user);
+        setPassword('');
+        setUsername('');
+        setEmail('');
         setLoggedIn(true);
         localStorage.setItem('token', data.token);
       })
@@ -36,7 +43,7 @@ const Signup = () => {
     <div>
       <form
         className="login-form"
-        onSubmit={(e) => signup(username, password, e)}
+        onSubmit={(e) => signup(username, email, password, e)}
       >
         <input
           type="username"
@@ -44,6 +51,14 @@ const Signup = () => {
           placeholder="Enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
@@ -57,10 +72,7 @@ const Signup = () => {
         <button type="submit" className="btn-sm btn-primary actions">
           Sign up
         </button>
-        <div>
-          Have an account?
-          <Link onClick={() => history.push(`/login`)}>Log in</Link>
-        </div>
+        <div>Have an account?</div>
       </form>
     </div>
   );
