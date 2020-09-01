@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import NavBar from './NavBar';
 import './Blog.css';
 
 const BlogForm = () => {
@@ -31,6 +32,8 @@ const BlogForm = () => {
 
   return (
     <div>
+      <NavBar />
+
       <Form onSubmit={handleSubmit} className="blog-form">
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>

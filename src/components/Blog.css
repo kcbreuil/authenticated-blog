@@ -1,6 +1,8 @@
 body {
   background-image: url(https://labourenergy.org/wp-content/uploads/2020/02/cute-backgrounds-for-youtube-1024x576.jpg);
   object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100vw;
 }
 
 body.background-image {
@@ -24,4 +26,7 @@ body.background-image {
 
 .blog-form {
   max-width: 500px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
 }

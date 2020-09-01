@@ -22,10 +22,9 @@ const Login = () => {
     })
       .then((user) => {
         setUser(user.data.user);
+        setUsername(user.username);
         localStorage.setItem('token', user.data.token);
         setLoggedIn(true);
-        setUsername('');
-        setPassword('');
       })
       .catch((e) => {
         console.log(e.message.toString(), 'Credentials Error');
@@ -61,7 +60,9 @@ const Login = () => {
           <div>
             <p>
               Don't have an account? &nbsp;
-              <Link onClick={() => history.push(`/signup`)}>Sign Up</Link>
+              <Link to="" onClick={() => history.push(`/signup`)}>
+                Sign Up
+              </Link>
             </p>
           </div>
         </form>

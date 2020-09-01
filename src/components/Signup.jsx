@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
-import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -14,8 +13,6 @@ const Signup = () => {
     email,
     setEmail
   } = useContext(AppContext);
-
-  const history = useHistory();
 
   const signup = async (username, email, password, e) => {
     e.preventDefault();

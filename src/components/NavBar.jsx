@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 
 const NavBar = () => {
-  const { user } = useContext(AppContext);
   return (
     <Navbar
       style={{

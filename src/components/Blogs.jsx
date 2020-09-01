@@ -3,13 +3,16 @@ import { AppContext } from '../context/AppContext';
 import Card from 'react-bootstrap/Card';
 
 import './Blog.css';
+import './Blogs.css';
+import NavBar from './NavBar';
 
 const Blogs = () => {
   const { blogs } = useContext(AppContext);
   const [comment, setComment] = useState('');
 
   return (
-    <div>
+    <div className="container">
+      <NavBar />
       {blogs.map((blog) => (
         <Card className="article-container" key={blog.id}>
           <Card.Body>{blog.title}</Card.Body>

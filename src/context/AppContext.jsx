@@ -4,7 +4,7 @@ import axios from 'axios';
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
