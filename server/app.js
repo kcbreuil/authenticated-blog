@@ -6,7 +6,8 @@ const express = require('express'),
 
 // Imports routes
 const userRouter = require('./routes/users');
-const blogRouter = require('./routes/blog');
+const blogRouter = require('./routes/blogs');
+const commentRouter = require('./routes/comments');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use(userRouter);
 app.use(blogRouter);
+app.use(commentRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
