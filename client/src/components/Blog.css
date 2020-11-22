@@ -1,0 +1,39 @@
+body {
+  background-image: url('../assets/background.jpg');
+  object-fit: cover;
+  /* background-repeat: no-repeat; */
+  background-size: 100vw;
+}
+
+body.background-image {
+  object-fit: contain;
+}
+
+.login-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin-top: 100px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.blog-form {
+  max-width: 500px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+img.displayed {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}

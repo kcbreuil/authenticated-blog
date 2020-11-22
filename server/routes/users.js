@@ -3,6 +3,7 @@ const router = new express.Router();
 const mongoose = require('mongoose');
 const auth = require('../middleware/auth.js');
 const User = require('../models/user');
+const Blog = require('../models/blog');
 
 //Create a User
 router.post('/users', async (req, res) => {
@@ -16,7 +17,7 @@ router.post('/users', async (req, res) => {
   }
 });
 
-// get all the bloggers / users
+// get all the users
 
 router.get('/users', async (req, res) => {
   await User.find({})
@@ -112,15 +113,5 @@ router.delete('/users/me', auth, async (req, res) => {
     res.status(500).send();
   }
 });
-// Get current user //
 
-router.get('/users/me', auth, async (req, res) => {
-  try {
-    res.send(req.user);
-  } catch (e) {
-    res.status(500).send();
-  }
-});
-
-//logout a user
 module.exports = router;

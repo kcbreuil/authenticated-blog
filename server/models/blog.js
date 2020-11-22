@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Comment = require('./comment');
+const User = require('./user');
 
 const blogSchema = new mongoose.Schema(
   {
@@ -12,23 +13,28 @@ const blogSchema = new mongoose.Schema(
       required: true
     },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: 'User'
     },
     comments: [
       {
-        type: Object,
-        postedBy: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        }
+        type: mongoose.Types.ObjectId,
+        ref: 'Comment'
       }
     ]
   },
   {
     timestamps: true
-  }
+  },
+  { usePushEach: true }
 );
+
+// create relation with comments
+// blogSchema.virtual('comments', {
+//   ref: 'Comment',
+//   localField: '_id',
+//   foreignField: 'owner'
+// });
 
 const Blog = mongoose.model('Blog', blogSchema);
 module.exports = Blog;

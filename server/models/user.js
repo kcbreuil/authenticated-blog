@@ -10,7 +10,13 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error('Invalid Email');
+      }
+    }
   },
   password: {
     type: String,
@@ -34,12 +40,12 @@ const userSchema = new mongoose.Schema({
     }
   ]
 });
-
 userSchema.virtual('blogs', {
   ref: 'Blog',
   localField: '_id',
   foreignField: 'owner'
 });
+
 userSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
