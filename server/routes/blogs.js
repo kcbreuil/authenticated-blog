@@ -72,15 +72,15 @@ router.patch('/blogs/:id', auth, async (req, res) => {
   }
 });
 
-// Delete specific blog
+// Delete users blog blog
 
 router.delete('/blogs/:id', auth, async (req, res) => {
   try {
-    const article = await Blog.findOneAndDelete({
+    const blog = await Blog.findOneAndDelete({
       _id: req.params.id,
       owner: req.user._id
     });
-    if (!article) {
+    if (!blog) {
       res.status(404).json('Blog not found.');
     }
     res.json('Blog has has been deleted.');
